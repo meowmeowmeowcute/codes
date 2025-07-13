@@ -3,7 +3,7 @@
 # define ma(a, b) ((a)>(b)?(a):(b))
 # define ab(a) ((a)>=0?(a):-1*(a))
 # define int long long
-# define MAX 200005
+# define MAX 100005
 # define inf 10000000000
 # define mod 1000000007
 # define pii pair<int, int>
@@ -24,30 +24,12 @@
 # define ri 2*id+1
 using namespace std;
 
-int n, m, k, id = 1, ans = 0;
-int applicants[MAX], apartments[MAX];
+int n;
+
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
 
-    cin >> n >> m >> k;
-    FKN(i, n)cin >> applicants[i];
-    FKN(i, m)cin >> apartments[i];
-    sort(applicants+1, applicants+n+1);
-    sort(apartments+1, apartments+m+1);
-    FKN(i, n){
-        if(apartments[i]+k>= applicants[i] and applicants[i] >= apartments[i]-k){
-            ans++;
-            id+=1;
-        }
-        if(apartments[i]+k< applicants[i])id+=1;
-        errs(id);
-    }
-    cout ent;
-    FKN(i, n)errs(applicants[i]);
-    cout ent;
-    FKN(i, m)errs(apartments[i]);
-    cout ent;
-    cout << ans;
+    cin >> n;
 }   
 
