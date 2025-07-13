@@ -36,18 +36,22 @@ signed main(){
     sort(applicants+1, applicants+n+1);
     sort(apartments+1, apartments+m+1);
     FKN(i, n){
-        if(apartments[i]+k>= applicants[i] and applicants[i] >= apartments[i]-k){
-            ans++;
+        if(id>m)break;
+        if(apartments[id]+k>= applicants[i] and applicants[i] >= apartments[id]-k){
+            ans+=1;
             id+=1;
         }
-        if(apartments[i]+k< applicants[i])id+=1;
-        errs(id);
+        if(apartments[id]+k< applicants[i]){
+            id+=1;
+            i-=1;
+        }
+        // errs(id);
     }
-    cout ent;
-    FKN(i, n)errs(applicants[i]);
-    cout ent;
-    FKN(i, m)errs(apartments[i]);
-    cout ent;
+    // cout ent;
+    // FKN(i, n)errs(applicants[i]);
+    // cout ent;
+    // FKN(i, m)errs(apartments[i]);
+    // cout ent;
     cout << ans;
 }   
 
