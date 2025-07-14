@@ -9,7 +9,7 @@
 # define ff first
 # define ss second
 # define err(a) cerr << #a << " : " << a << '\n'
-# define errs(a) cerr << a << sps
+# define errs(a) cerr << a sps
 # define ent  "\n"
 # define sps  ' '
 # define FKN(I,N) for(int I=1;I<=(N);I++)
@@ -31,13 +31,23 @@ inline T ma(T a, T b) {
     return a > b ? a : b;
 }
 
-
-int n;
+int n, a, b;
 
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
 
     cin >> n;
+    FKN(i, n){
+        cin >> a >> b;
+        int dif = ab(a-b);
+        int remain = ma(a, b)-dif*2;
+        if (remain <0){
+            cout << "NO\n";
+            continue;
+        }
+        if (remain%3 == 0)cout << "YES\n";
+        else cout << "NO\n";
+    }
 }   
 
