@@ -1,7 +1,8 @@
 *.exe
 build/
 try/
-.vscode/
 .templates
 .json
 .js
+.txt
+.cph/
