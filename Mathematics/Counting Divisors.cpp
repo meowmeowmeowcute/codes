@@ -85,9 +85,9 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
 }
 
 
-int n, inp;
-vi ps;
-vector<bool> p(1000, true);
+int n, inp, ans = 1;
+vi ps, pmip(MAX, -1);
+vector<bool> isp(1000, true);
 
 
 signed main(){
@@ -96,17 +96,35 @@ signed main(){
 
 
 
-    cin >> n;
-    p[0] = 0;p[1] = 0;
+//    cin >> n;
+    isp[0] = 0;isp[1] = 0;
     FN(i, 2, 1000){
-        if (p[i]){
+        if (isp[i]){
             ps.pb(i);
         }
+        FNAT(p, ps){
+            if(i*p>MAX)break;
+            isp[i*p] = 0;
+            
+        }
     }
-
+    cin >> n;
     FN(n){
         cin >> inp;
-        outl(a[inp].size());
+        int cur = inp;
+        FNAT(i, ps){
+            int t = 0;
+            if(i>int(sqrt(inp)))break;
+            while(!(cur%i)){
+                t++;
+                cur%=i;
+                outl(cur);
+                if(t>20)break;
+            }
+            ans*=(t+1);
+        }
+        outl(ans);
     }
+
 }   
 
