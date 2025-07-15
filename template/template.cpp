@@ -29,6 +29,7 @@
 #define out(i) cout<<(i)
 #define outs(i) cout<<(i)<<" "
 #define outl(i) cout<<(i)<<"\n"
+#define errl cerr << '_'*10;
 
 # define set_M() int M = (L+R)/2
 # define li 2*id

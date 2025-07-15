@@ -1,8 +1,7 @@
 *.exe
+*.json
+*.js
+*.txt
 build/
 try/
-.templates
-.json
-.js
-.txt
 .cph/

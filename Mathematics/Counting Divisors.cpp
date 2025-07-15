@@ -1,24 +1,24 @@
-# include <bits/stdc++.h>
-// # define int long long
+#include <bits/stdc++.h>
+#define int long long
 
-# define MAX 1000005
-# define inf 10000000000
-# define mod 1000000007
+#define MAX 1000005
+#define inf 10000000000
+#define mod 1000000007
 
-# define pii pair<int, int>
-# define vi vector<int>
-# define vpii vector<pii>
+#define pii pair<int, int>
+#define vi vector<int>
+#define vpii vector<pii>
 
 #define pb(...) push_back(__VA_ARGS__)
 #define bg(i) i.begin()
 #define ed(i) i.end()
 #define all(i) bg(i),ed(i)
 
-# define ff first
-# define ss second
+#define ff first
+#define ss second
 
 #define __overload_for__(i,j,k,l,m,...) m
-#define FN_(j) for(int i = 1; i<=j; i++) 
+#define FN_(i) FNN(_, i)
 #define FNN(i,j) for(int i = 1;i<=j;i++)
 #define FNAT(i,j) for(auto i : j)
 #define FNNM(i,j,k) for(int i = j;i<=k;i++)
@@ -30,9 +30,9 @@
 #define outs(i) cout<<(i)<<" "
 #define outl(i) cout<<(i)<<"\n"
 
-# define set_M() int M = (L+R)/2
-# define li 2*id
-# define ri 2*id+1
+#define set_M() int M = (L+R)/2
+#define li 2*id
+#define ri 2*id+1
 
 using namespace std;
 
@@ -85,46 +85,47 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
 }
 
 
-int n, inp, ans = 1;
-vi ps, pmip(MAX, -1);
-vector<bool> isp(1000, true);
+int i, j, k, l, n, inp, ans = 1, to = 1000;
+vi ps;
+vector<bool> isp(to+1, true);
 
 
 signed main(){
+
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
 
-
-
 //    cin >> n;
     isp[0] = 0;isp[1] = 0;
-    FN(i, 2, 1000){
+    FN(i, 2, to){
         if (isp[i]){
             ps.pb(i);
-        }
-        FNAT(p, ps){
-            if(i*p>MAX)break;
-            isp[i*p] = 0;
-            
+            FN(j, i*i, to, i){
+                isp[j] = 0;
+            }
         }
     }
     cin >> n;
     FN(n){
         cin >> inp;
+        if (inp ==1){
+            outl(1);
+            continue;
+        }
+        int tot = 1;
         int cur = inp;
         FNAT(i, ps){
-            int t = 0;
-            if(i>int(sqrt(inp)))break;
-            while(!(cur%i)){
+            int t = 1;
+            if(i>inp)break;
+            while(cur%i==0 and cur!=1){
+                cur/=i;
                 t++;
-                cur%=i;
-                outl(cur);
-                if(t>20)break;
             }
-            ans*=(t+1);
+            ans*=t;
         }
-        outl(ans);
+        if (cur>1)ans*=2;
+        outl((ans==1)?2:ans);
+        ans = 1;
     }
-
 }   
 
