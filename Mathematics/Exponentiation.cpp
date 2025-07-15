@@ -18,12 +18,12 @@
 # define ss second
 
 #define __overload_for__(i,j,k,l,m,...) m
-#define FN_(i) FNN(_,i)
+#define FN_(j) for(int i = 1; i<=j; i++) 
 #define FNN(i,j) for(int i = 1;i<=j;i++)
 #define FNAT(i,j) for(auto i : j)
 #define FNNM(i,j,k) for(int i = j;i<=k;i++)
 #define FNNMQ(i, j, k, l) for (int i = j; i<=k; i=i+l)
-#define FN(...) __overload_for__(__VA_ARGS__,FNNMQ,FNNM,FNN,FN_)(__VA_ARGS__)
+#define FN(...) __overload_for__(__VA_ARGS__,FNNMQ,FNNM,FNN, FN_)(__VA_ARGS__)
 
 #define nl cout<<"\n"
 #define out(i) cout<<(i)
@@ -98,7 +98,7 @@ signed main(){
     cin.tie(0);cout.tie(0);
 
     cin >> n;
-    FN(i, n){
+    FN(n){
         cin >> a >> b;
         cout << pow_long(a, b, mod);
         nl;
