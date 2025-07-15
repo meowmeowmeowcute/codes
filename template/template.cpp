@@ -31,6 +31,41 @@ inline T ma(T a, T b) {
     return a > b ? a : b;
 }
 
+//better io
+#ifdef cin
+template<class T>
+__fast_read& operator>>(__fast_read& fin,vector<T>&f) {
+    for(auto &&i : f) fin>>i;
+    return fin;
+}
+template<class T,class R>
+__fast_read& operator>>(__fast_read& fin,pair<T,R>&x) {
+    fin>>x.first>>x.second;
+    return fin;
+}
+#else
+template<class T>
+std::istream& operator>>(std::istream& fin,std::vector<T>&f) {
+    for(auto &&i : f) fin>>i;
+    return fin;
+}
+template<class T,class R>
+std::istream& operator>>(std::istream& fin,std::pair<T,R>&x) {
+    fin>>x.first>>x.second;
+    return fin;
+}
+#endif
+template<class T>
+std::ostream& operator<<(std::ostream& fout,std::vector<T>&f) {
+    for(auto &i : f) fout<<i<<" ";
+    return fout;
+}
+template<class T,class R>
+std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
+    fout<<x.first<<" "<<x.second;
+    return fout;
+}
+
 
 int n;
 
