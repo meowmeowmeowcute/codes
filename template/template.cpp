@@ -18,7 +18,7 @@
 # define ss second
 
 #define __overload_for__(i,j,k,l,m,...) m
-#define FN_(j) for(int i = 1; i<=j; i++) 
+#define FN_(i) FNN(_, i)
 #define FNN(i,j) for(int i = 1;i<=j;i++)
 #define FNAT(i,j) for(auto i : j)
 #define FNNM(i,j,k) for(int i = j;i<=k;i++)
@@ -29,7 +29,6 @@
 #define out(i) cout<<(i)
 #define outs(i) cout<<(i)<<" "
 #define outl(i) cout<<(i)<<"\n"
-#define errl cerr << '_'*10;
 
 # define set_M() int M = (L+R)/2
 # define li 2*id
