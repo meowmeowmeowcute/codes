@@ -1,42 +1,42 @@
 # include <bits/stdc++.h>
 # define int long long
-
-# define MAX 1000005
+ 
+# define MAX 200005
 # define inf 10000000000
 # define mod 1000000007
-
+ 
 # define pii pair<int, int>
 # define vi vector<int>
 # define vpii vector<pii>
-
+ 
 #define pb(...) push_back(__VA_ARGS__)
 #define bg(i) i.begin()
 #define ed(i) i.end()
 #define all(i) bg(i),ed(i)
-
+ 
 # define ff first
 # define ss second
-
+ 
 #define __overload_for__(i,j,k,l,m,...) m
-#define FN_(j) for(int i = 1; i<=j; i++) 
+#define FN_(i) FNN(_, i)
 #define FNN(i,j) for(int i = 1;i<=j;i++)
 #define FNAT(i,j) for(auto i : j)
 #define FNNM(i,j,k) for(int i = j;i<=k;i++)
 #define FNNMQ(i, j, k, l) for (int i = j; i<=k; i=i+l)
 #define FN(...) __overload_for__(__VA_ARGS__,FNNMQ,FNNM,FNN, FN_)(__VA_ARGS__)
-
+ 
 #define nl cout<<"\n"
 #define out(i) cout<<(i)
 #define outs(i) cout<<(i)<<" "
 #define outl(i) cout<<(i)<<"\n"
 #define errl cerr << '_'*10;
-
+ 
 # define set_M() int M = (L+R)/2
 # define li 2*id
 # define ri 2*id+1
-
+ 
 using namespace std;
-
+ 
 template<typename T>
 inline int ab(int x) {
     return x >= 0 ? x : -x;
@@ -49,7 +49,7 @@ template<typename T>
 inline T ma(T a, T b) {
     return a > b ? a : b;
 }
-
+ 
 //better io
 #ifdef cin
 template<class T>
@@ -84,43 +84,41 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
     fout<<x.first<<" "<<x.second;
     return fout;
 }
-
-
-
-int n, k, inp, ans = 0, root[MAX];
-vi graph[MAX], high(MAX, 0);
-void dfs(int cur , int pre){
+ 
+ 
+int n, inp;
+vi graph[MAX];
+vi emple(MAX, 0);
+ 
+int dfs(int cur , int pre){
+    if (graph[cur].size() == 0){
+        emple[cur] = 0;
+        return 1;
+    }
     FNAT(nxt, graph[cur]){
         if(nxt == pre){
             continue;
         }
-        dfs(nxt, cur);
-        high[cur] = ma(high[cur], high[nxt]+1);
+        emple[cur]+=dfs(nxt, cur);
     }
+    return emple[cur]+1;
 }
+ 
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
+ 
     cin >> n;
-    FN(i, n){
-        cin >> k;
-        FN(k){
-            cin >> inp;
-            root[inp] = 1;
-            graph[i].pb(inp);
-        }
+    FN(n-1){
+        cin >> inp;
+        graph[inp].pb(_+1);
     }
-    int rt;
-    FN(i, n){
-        if (root[i] == 0){
-            rt = i;
-        }
+    dfs(1, -1);
+    FN(n){
+        outs(emple[_]);
     }
-    dfs(rt, -1);
-    FN(i, n){
-        ans+=high[i];
-    }
-    outl(rt);
-    out(ans);
-
+    // FN(n){
+    //     outl(graph[_]);
+    // }
+ 
 }
