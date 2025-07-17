@@ -1,7 +1,7 @@
 # include <bits/stdc++.h>
 # define int long long
 
-# define MAX 1000005
+# define MAX 200005
 # define inf 10000000000
 # define mod 1000000007
 
@@ -84,29 +84,47 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
     return fout;
 }
 
+int n, q, k, m, l, a[MAX];
+int seg[MAX*4];
+void build(int L, int R, int id){
+    if(L == R){
+        seg[id] = a[L];
+        return;
+    } 
+    set_M();
+    build(L, M, li);
+    build(M+1, R, ri);
+    seg[id] = mi(seg[li], seg[ri]);
+}
 
-int n;
-
-void slove(int n, int a, int b, int c){
-    if (n == 1){
-        outs(a);outl(c);
+void modify(int x, int v, int L, int R, int id){
+    if (L == R){
+        seg[id] = v;
+        return;
     }
-    else{
-        slove (n-1, a, c, b);
-        slove(1, a, b, c);
-        slove(n-1, b, a, c);
-    }
-    
+    set_M();
+    if (x>=L and x<=M)modify(x, v, L, M, li);
+    else modify(x, v, M+1, R, ri);
+    seg[id] = mi(seg[li], seg[ri]);
+}
 
+int query(int l, int r, int L, int R, int id){
+    if(l == L and r == R)return seg[id];
+    set_M();
+    if(r<=M)return query(l, r, L, M, li);
+    else if (l>M) return query(l, r, M+1, R, ri);
+    else return mi(query(l, M, L, M, li), query(M+1, r, M+1, R, ri));
 }
 
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
-
-    cin >> n;
-    cout << pow(2, n)-1;
-    slove(n, 1, 2, 3);
-    
+    cin >> n >> q;
+    FN(n)cin >> a[_];
+    build(1, n, 1);
+    FN(q){
+        cin >> m >> l;
+        outl(query(m, l, 1, n, 1));
+    }
 }   
 

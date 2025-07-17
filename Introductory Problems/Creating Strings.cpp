@@ -87,26 +87,10 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
 
 int n;
 
-void slove(int n, int a, int b, int c){
-    if (n == 1){
-        outs(a);outl(c);
-    }
-    else{
-        slove (n-1, a, c, b);
-        slove(1, a, b, c);
-        slove(n-1, b, a, c);
-    }
-    
-
-}
-
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
 
     cin >> n;
-    cout << pow(2, n)-1;
-    slove(n, 1, 2, 3);
-    
 }   
 
