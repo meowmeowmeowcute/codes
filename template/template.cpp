@@ -2,7 +2,7 @@
 # define int long long
 
 # define MAX 100005
-# define inf 10000000000
+# define inf 100000000000000000
 # define mod 1000000007
 
 # define pii pair<int, int>

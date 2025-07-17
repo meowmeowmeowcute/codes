@@ -1,8 +1,8 @@
 # include <bits/stdc++.h>
 # define int long long
 
-# define MAX 100005
-# define inf 10000000000
+# define MAX 20
+# define inf 1000000000000000
 # define mod 1000000007
 
 # define pii pair<int, int>
@@ -29,7 +29,6 @@
 #define out(i) cout<<(i)
 #define outs(i) cout<<(i)<<" "
 #define outl(i) cout<<(i)<<"\n"
-#define elif else if
 
 # define set_M() int M = (L+R)/2
 # define li 2*id
@@ -38,7 +37,7 @@
 using namespace std;
 
 template<typename T>
-inline int ab(int x) {
+inline T ab(T x) {
     return x >= 0 ? x : -x;
 }
 template<typename T>
@@ -85,31 +84,36 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
     return fout;
 }
 
-int n, m;
-int dp[MAX][105];
-int graph[MAX];
+int n, a[MAX], sum = 0, inp, minimum = inf;
+set<int> ans;
+
+void slove(int cur, int id){
+    if(id == n-1)return;
+    ans.insert(cur);
+    ans.insert(cur+a[id]);
+    slove(cur, id+1);
+    slove(cur+a[id], id+1);
+}
+
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
 
-    cin >> n >> m;
-    FN(n)cin >> graph[_];
-    if (graph[1] == 0)FN(m)dp[1][_] = 1;
-    else dp[1][graph[1]] = 1;
-    FN(i, 2, n){
-        if(graph[i] == 0){
-            FN(j, 1, m){
-                dp[i][j] = ((dp[i-1][j-1]+dp[i-1][j])%mod+dp[i-1][j+1])%mod;
-            }
-        }
-        else dp[i][graph[i]] = ((dp[i-1][graph[i]-1]+dp[i-1][graph[i]])%mod+dp[i-1][graph[i]+1])%mod;
+    cin >> n;
+    if(n == 1){
+        cin >> n;out(n);
+        return 0;
+    }    
+    FN(n){
+        cin>>inp;
+        sum+=inp;
+        a[_-1]= inp;
     }
-    int ans = 0;
-    FN(m){
-        ans += dp[n][_];
-        ans%=mod;
+    slove(0, 0);
+    FNAT(i, ans){
+        int tmp = sum-2*i;
+        minimum = mi(minimum, ab(tmp));
     }
-    out(ans);
-
+    cout << minimum;
 }   
 

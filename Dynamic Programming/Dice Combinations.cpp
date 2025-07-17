@@ -85,16 +85,26 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
     return fout;
 }
 
-int slove(int n){
-    
-}
 
 int n;
+int dp[MAX];
 
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
-
+    dp[0] = 1;
+    dp[1] = 1;
+    dp[2] = 2;
+    dp[3] = 4;
+    dp[4] = 8;
+    dp[5] = 16;
     cin >> n;
+    FN(i, 6, n){
+        FN(j, 6){
+            dp[i]+=dp[i-j];
+            dp[i]%=mod;
+        }
+    }
+    cout << dp[n];
 }   
 
