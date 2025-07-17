@@ -85,12 +85,24 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
 }
 
 
+//bitset
+
 int n;
+char a;
+unordered_set<char> b;
+vector<char> c;
+deque<string> dq;
 
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
+    while(cin >> a){
+        b.insert(a);
+    }
+    FNAT(i, b){
+        c.pb(i);
+        dq.push_back(to_string(i));
+    }
 
-    cin >> n;
 }   
 
