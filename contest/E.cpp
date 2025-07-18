@@ -86,12 +86,29 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
 }
 
 
-int n;
-
+int n, a[MAX], q, k, l, m;
+vpii v;
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
 
     cin >> n;
+    FN(n){
+        cin >> a[_];
+    }
+    cin >> q;
+    FN(q){
+        cin >> k;
+        if (k == 1){
+            cin >> l >> m;
+            v.pb({l, m});
+        }else if (k == 2){
+            cin >> l;
+            int tmp = a[l];
+            FNAT(i, v){
+                if(l>=i.ff&&l<=i.ss)tmp/=2;
+            }
+            cout << tmp << "\n";
+    }
 }   
-
+}

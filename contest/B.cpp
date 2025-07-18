@@ -1,8 +1,8 @@
 # include <bits/stdc++.h>
 # define int long long
 
-# define MAX 100005
-# define inf 100000000000000000
+# define MAX 1000005
+# define inf 10000000000
 # define mod 1000000007
 
 # define pii pair<int, int>
@@ -30,6 +30,7 @@
 #define outs(i) cout<<(i)<<" "
 #define outl(i) cout<<(i)<<"\n"
 #define elif else if
+
 
 # define set_M() int M = (L+R)/2
 # define li 2*id
@@ -85,13 +86,27 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
     return fout;
 }
 
-
-int n;
+int n, q, k, m, l, a[MAX];
+int seg[MAX];
+void f(int id){
+    if (id > n) return;
+    seg[id] = a[id];
+    f(li);
+    f(ri);
+    if(li <=n)seg[id]+= seg[li];
+    if(ri <=n)seg[id]+= seg[ri];
+}
 
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
+    cin >> n >> q;
+    FN(i, n)cin >> a[i];
+    f(1);
+    FN(q){
+        cin >> m;
+        outl(seg[m]);
+    }
 
-    cin >> n;
 }   
 

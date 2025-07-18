@@ -86,12 +86,52 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
 }
 
 
-int n;
+int n, k, l, total = 0, inv[1000005], pre[1000005];
+vi a;
+int pow_long(int x, int y, int p){
+    if (y == 0) return 1;
+    if (y & 1) return (pow_long(x, y-1, p)*x)%p;
+    int pow_n = pow_long(x, y/2, p);
+    return (pow_n*pow_n)%p;
+}
 
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
-
+    pre[0] = 1;
     cin >> n;
+    a.resize(n+1);
+    string useless;
+    FN(n){
+        cin >> useless >> a[_];
+        total+=a[_];
+    }
+    FN(total){
+        pre[_] = pre[_-1]*_;
+        pre[_]%=mod;
+        inv[_] = pow_long(pre[_], mod-2, mod);
+    }
+    inv[0] = 1;
+/*
+    FN(total){
+        outs(inv[_]);
+    }nl;
+*/
+    int ans = pre[total];
+//    outl(ans);
+    FN(n){
+        ans*= inv[a[_]];
+        ans%=mod;
+    }
+    outl(ans);
 }   
 
+/*
+5
+1 1
+2 1
+3 3
+4 1
+5 1
+
+*/
