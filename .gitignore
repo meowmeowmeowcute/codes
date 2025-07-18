@@ -2,7 +2,6 @@
 !*/
 !*.*
 *.exe
-*.json
 *.js
 *.txt
 build/

@@ -1,11 +1,9 @@
-
- {
+{
     "code-runner.executorMap": {
-    "cpp": "cd $dir && g++ \"$fileName\" -o run.exe && ./run.exe"
+        "cpp": "cd $dir && g++ \"$fileName\" -o run.exe && ./run.exe && rm run.exe"
     },
     "code-runner.runInTerminal": true,
     "code-runner.saveFileBeforeRun": true,
-
     "files.associations": {
         "iostream": "cpp",
         "iosfwd": "cpp"
