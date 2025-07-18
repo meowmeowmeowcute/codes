@@ -18,7 +18,7 @@
 # define ss second
 
 #define __overload_for__(i,j,k,l,m,...) m
-#define FN_(j) for(int i = 1; i<=j; i++) 
+#define FN_(i) for(int _ = 1; _<=i; _++) 
 #define FNN(i,j) for(int i = 1;i<=j;i++)
 #define FNAT(i,j) for(auto i : j)
 #define FNNM(i,j,k) for(int i = j;i<=k;i++)
