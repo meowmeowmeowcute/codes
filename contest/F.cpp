@@ -85,43 +85,13 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
     return fout;
 }
 
-vector<pii> mv({//y, x
-            {0, 1},
-            {-1, 1},
-            {-1, 0},
-            {-1, -1},
-            {0, -1},
-            {1, -1},
-            {1, 0},
-            {1, 1}});
 
-struct p{
-    int x;int y;int dir;
-    bool entered = false;
-    bool cross = false;
-};
+int n;
 
-int n, k, m, l;
-int game_map[5][5];
-vector<p> bullets;
-int crossed = 0;
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
 
-    game_map
-
     cin >> n;
-    FN(n){
-        p bullet;
-        cin >> bullet.dir >> bullet.x >>bullet.y;
-        bullets.pb(bullet);
-    }
-    while(crossed<n){
-        FNAT(cur, bullets){
-            if ()
-        }
-    }
-    
 }   
 

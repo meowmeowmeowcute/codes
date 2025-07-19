@@ -7,5 +7,20 @@
     "files.associations": {
         "iostream": "cpp",
         "iosfwd": "cpp"
-    }
+    },
+    "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+    },
+    "editor.wordBasedSuggestions": "currentDocument",
+    "editor.suggestOnTriggerCharacters": true,
+    "editor.suggest.showWords": true,
+    "editor.suggest.minCharacters": 1, 
+    "editor.suggestSelection": "recentlyUsedByPrefix",    
+    "editor.quickSuggestionsDelay": 0,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "files.maxMemoryForLargeFilesMB": 4096
+
 }
+
