@@ -1,6 +1,6 @@
 {
     "code-runner.executorMap": {
-        "cpp": "cd $dir && g++ \"$fileName\" -o run.exe && ./run.exe && rm run.exe"
+        "cpp": "sh D:/Desktop/codes/run_cpp.sh $fullFileName"
     },
     "code-runner.runInTerminal": true,
     "code-runner.saveFileBeforeRun": true,

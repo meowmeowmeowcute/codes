@@ -1,11 +1,10 @@
 # include <bits/stdc++.h>
-# define int long long
 
-# define MAX 100005
+# define MAX 200000
 # define inf 100000000000000000
 # define mod 1000000007
 
-# define pii pair<int, int>
+# define pii pair<int32_t, int32_t>
 # define vi vector<int>
 # define vpii vector<pii>
 
@@ -85,23 +84,14 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
     return fout;
 }
 
-vector<pii> mv({//y, x
-            {0, 1},
-            {-1, 1},
-            {-1, 0},
-            {-1, -1},
-            {0, -1},
-            {1, -1},
-            {1, 0},
-            {1, 1}});
-
+const int bullet_type[8][2]= {{1,0},{1,1},{0,1},{-1,1},{-1,0},{-1,-1},{0,-1},{1,-1}};
 struct p{
     int x;int y;int dir;
     bool entered = false;
-    bool cross = false;
+    bool run = false;
 };
 
-bool in_map(int y, int x){
+inline bool in_map(int y, int x){
     if(y>=0 and y<=4 and x>=0 and x<=4){
         return true;
     }
@@ -110,8 +100,8 @@ bool in_map(int y, int x){
 
 int n, k, m, l;
 int game_map[5][5];
-vector<p> bullets;
-int crossed = 0;
+p b[MAX];
+int bullet_runs = 0;
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
@@ -119,54 +109,60 @@ signed main(){
     game_map[2][2] = 1;
 
     cin >> n;
-    FN(n){
-        p bullet;
-        cin >> bullet.dir >> bullet.x >>bullet.y;
-        bullets.pb(bullet);
+    for(int i = 1; i<=n; i++){
+        cin >> b[i].dir >> b[i].x >>b[i].y;
+        if(in_map(b[i].y, b[i].x)){
+            b[i].entered = true;
+            game_map[b[i].y][b[i].x] = -1;
+        }
     }
-    while(crossed<n){
-        queue<pii> can_go;
-        FN(y, 0, 4){
-            FN(x, 0, 4){
+    while(bullet_runs<n){
+        queue<pii> bfs;
+        for(int y = 0; y<5; y++){
+            for(int x = 0; x<5; x++){
                 if(game_map[y][x]==1){
-                    can_go.push({y, x}); 
+                    bfs.push({y+1, x});
+                    bfs.push({y, x+1}); 
+                    bfs.push({y-1, x}); 
+                    bfs.push({y, x-1}); 
                 }
             }
         }
 
-        if (can_go.empty()){
+        if (bfs.empty()){
             outl(0);
             return 0;
         }
 
-        while(!can_go.empty()){
-            int y = can_go.front().ff;int x = can_go.front().ss;
-            can_go.pop();
+        while(!bfs.empty()){
+            int y = bfs.front().ff;int x = bfs.front().ss;
+            bfs.pop();
             if(in_map(y, x)and game_map[y][x] == 0)game_map[y][x] =  1;
         }
 
-        FN(y, 0, 4){
-            FN(x, 0, 4){
+        for(int y = 0; y<5; y++){
+            for(int x = 0; x<5; x++){
                 if(game_map[y][x] == -1)game_map[y][x] = 0;
             }
         }
 
-        FNAT(cur, bullets){
-            if(in_map(cur.y, cur.x)){
-                cur.entered = true;
-                
-            }elif (cur.entered){
-                cur.cross = true;
-                cur.entered = false;
+        for(int i = 1; i<=n; i++){
+            if(!b[i].run){
+                b[i].x+=bullet_type[b[i].dir][0];
+                b[i].y+=bullet_type[b[i].dir][1];
+                if(in_map(b[i].y, b[i].x)){
+                    b[i].entered = true;
+                    game_map[b[i].y][b[i].x] = -1;
+    
+                }else if (b[i].entered){
+                    b[i].run = true;
+                    bullet_runs++;
+                }
             }
+
         }
 
         
-        FNAT(cur, bullets){
-            if(cur.entered){
-                game_map[cur.y][cur.x]  =-1;
-            }
-        }
     }
     outl(1);
     return 0;
