@@ -1,7 +1,7 @@
 # include <bits/stdc++.h>
 # define int long long
 
-# define MAX 100005
+# define MAX 1000005
 # define inf 100000000000000000
 # define mod 1000000007
 
@@ -86,12 +86,37 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
 }
 
 
-int n;
+int n, con[MAX], clr[MAX], leaf[MAX], a, b, ans = 0;
+vi graph[MAX];
+
+void dfs(int cur, int pre){
+    //outs(cur);outl(pre);
+    FNAT(i, graph[cur]){
+        if(i!=pre){
+            dfs(i, cur);
+        }
+    }
+    if(pre!=-1 and clr[cur]!=clr[pre]){
+        ans++;
+    }
+}
+
+
 
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
-
     cin >> n;
-}   
+    FN(n)cin >> clr[_];
+    FN(n-1){
+        cin >> a >> b;
+        graph[a].pb(b);
+        graph[b].pb(a);
+        con[a]++;con[b]++;
+    }
+    FN(n)if(con[_] == 1)leaf[_] = 1;
+    dfs(1, -1);
+    if (clr[1] == 1)ans++;
+    outl(ans);
+}       
 
