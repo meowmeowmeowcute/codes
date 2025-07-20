@@ -124,7 +124,7 @@ signed main(){
                     bfs.push({y+1, x});
                     bfs.push({y, x+1}); 
                     bfs.push({y-1, x}); 
-                    bfs.push({y, x-1}); 
+                    bfs.push({y, x-1}); love
                 }
             }
         }
