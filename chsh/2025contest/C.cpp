@@ -20,7 +20,7 @@
 #define __overload_for__(i,j,k,l,m,...) m
 #define FN_(i) FNN(_, i)
 #define FNN(i,j) for(int i = 1;i<=j;i++)
-#define FNAT(i,j) for(auto i : j)
+#define FNAT(i,j) for(auto &i : j)
 #define FNNM(i,j,k) for(int i = j;i<=k;i++)
 #define FNNMQ(i, j, k, l) for (int i = j; i<=k; i=i+l)
 #define FN(...) __overload_for__(__VA_ARGS__,FNNMQ,FNNM,FNN, FN_)(__VA_ARGS__)
@@ -101,6 +101,13 @@ struct p{
     bool cross = false;
 };
 
+bool in_map(int y, int x){
+    if(y>=0 and y<=4 and x>=0 and x<=4){
+        return true;
+    }
+    return false;
+}
+
 int n, k, m, l;
 int game_map[5][5];
 vector<p> bullets;
@@ -118,10 +125,50 @@ signed main(){
         bullets.pb(bullet);
     }
     while(crossed<n){
+        queue<pii> can_go;
+        FN(y, 0, 4){
+            FN(x, 0, 4){
+                if(game_map[y][x]==1){
+                    can_go.push({y, x}); 
+                }
+            }
+        }
+
+        if (can_go.empty()){
+            outl(0);
+            return 0;
+        }
+
+        while(!can_go.empty()){
+            int y = can_go.front().ff;int x = can_go.front().ss;
+            can_go.pop();
+            if(in_map(y, x)and game_map[y][x] == 0)game_map[y][x] =  1;
+        }
+
+        FN(y, 0, 4){
+            FN(x, 0, 4){
+                if(game_map[y][x] == -1)game_map[y][x] = 0;
+            }
+        }
+
         FNAT(cur, bullets){
-            if ()
+            if(in_map(cur.y, cur.x)){
+                cur.entered = true;
+                
+            }elif (cur.entered){
+                cur.cross = true;
+                cur.entered = false;
+            }
+        }
+
+        
+        FNAT(cur, bullets){
+            if(cur.entered){
+                game_map[cur.y][cur.x]  =-1;
+            }
         }
     }
-    
+    outl(1);
+    return 0;
 }   
 
