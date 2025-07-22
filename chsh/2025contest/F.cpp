@@ -85,35 +85,42 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
 }
 
 int n, q, k, m, l, a[MAX];
-int seg[MAX*4];
+int seg[MAX*4], lz[MAX*4];
 void build(int L, int R, int id){
     if(L == R){
         seg[id] = a[L];
         return;
     } 
-    set_M();
-    build(L, M, li);
-    build(M+1, R, ri);
-    seg[id] = mi(seg[li], seg[ri]);
-}
-
-void modify(int x, int v, int L, int R, int id){
-    if (L == R){
-        seg[id] = v;
-        return;
+    else{
+        seg[id] = -1;
+        set_M();
+        build(L, M, li);
+        build(M+1, R, ri);
     }
-    set_M();
-    if (x>=L and x<=M)modify(x, v, L, M, li);
-    else modify(x, v, M+1, R, ri);
-    seg[id] = mi(seg[li], seg[ri]);
 }
 
-int query(int l, int r, int L, int R, int id){
+void modify(int l, int r, int L, int R, int id){
+    
+}
+
+int update(int l, int r, int L, int R, int id){
+    if(lz[id]){
+        if(L!=R){
+            lz[li]+=lz[id];
+            lz[ri]+=lz[id];
+        }
+        else{
+            while(lz[id]--){
+                seg[id]/=2;
+            }
+        }
+        lz[id] = 0;
+    }
     if(l == L and r == R)return seg[id];
     set_M();
-    if(r<=M)return query(l, r, L, M, li);
-    else if (l>M) return query(l, r, M+1, R, ri);
-    else return mi(query(l, M, L, M, li), query(M+1, r, M+1, R, ri));
+    if(r<=M)return update(l, r, L, M, li);
+    else if (l>M) return update(l, r, M+1, R, ri);
+    else return mi(update(l, M, L, M, li), update(M+1, r, M+1, R, ri));
 }
 
 signed main(){
@@ -124,11 +131,8 @@ signed main(){
     build(1, n, 1);
     FN(q){
         cin >> k >> m >> l;
-        if (k == 1)modify(m, l, 1, n, 1);
-        else{
             if (l>n)l = n;
-            outl(query(m, l, 1, n, 1));
-        }
+            outl(update(m, l, 1, n, 1));
     }
 }   
 
