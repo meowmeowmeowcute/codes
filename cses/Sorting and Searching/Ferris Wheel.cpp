@@ -2,7 +2,7 @@
 # define int long long
 
 # define MAX 200005
-# define inf 10000000000
+# define inf 100000000000000000
 # define mod 1000000007
 
 # define pii pair<int, int>
@@ -29,6 +29,7 @@
 #define out(i) cout<<(i)
 #define outs(i) cout<<(i)<<" "
 #define outl(i) cout<<(i)<<"\n"
+#define elif else if
 
 # define set_M() int M = (L+R)/2
 # define li 2*id
@@ -84,51 +85,26 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
     return fout;
 }
 
-int n, q, k, m, l, a[MAX];
-int seg[MAX*4];
-void build(int L, int R, int id){
-    if(L == R){
-        seg[id] = a[L];
-        return;
-    } 
-    set_M();
-    build(L, M, li);
-    build(M+1, R, ri);
-    seg[id] = mi(seg[li], seg[ri]);
-}
 
-void modify(int x, int v, int L, int R, int id){
-    if (L == R){
-        seg[id] = v;
-        return;
-    }
-    set_M();
-    if (x>=L and x<=M)modify(x, v, L, M, li);
-    else modify(x, v, M+1, R, ri);
-    seg[id] = mi(seg[li], seg[ri]);
-}
-
-int query(int l, int r, int L, int R, int id){
-    if(l == L and r == R)return seg[id];
-    set_M();
-    if(r<=M)return query(l, r, L, M, li);
-    else if (l>M) return query(l, r, M+1, R, ri);
-    else return mi(query(l, M, L, M, li), query(M+1, r, M+1, R, ri));
-}
-
+int n, k, a[MAX], ans = 0;
+ 
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
-    cin >> n >> q;
+ 
+    cin >> n >> k;
     FN(n)cin >> a[_];
-    build(1, n, 1);
-    FN(q){
-        cin >> k >> m >> l;
-        if (k == 1)modify(m, l, 1, n, 1);
-        else{
-            if (l>n)l = n;
-            outl(query(m, l, 1, n, 1));
+    sort(a+1, a+n+1);
+    int l = 1;
+    int r = n;
+    while(r-l>=0){
+        // cerr << l <<' ' << r << '\n';
+        if(a[l]+a[r]<=k){
+            l++;
         }
+        r--;
+        ans++;
     }
-}   
+    outl(ans);
+
 
