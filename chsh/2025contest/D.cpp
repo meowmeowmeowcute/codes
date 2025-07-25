@@ -119,5 +119,3 @@ signed main(){
     if (clr[1] == 1)ans++;
     outl(ans);
 }       
-
-//meow
