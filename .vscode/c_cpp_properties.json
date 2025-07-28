@@ -1,6 +1,21 @@
 {
     "configurations": [
         {
+            // --- Linux 環境專用設定 ---
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            // Linux 環境下 g++ 編譯器的標準路徑
+            "compilerPath": "/usr/bin/g++",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            // 針對 Linux 的 IntelliSense 模式
+            "intelliSenseMode": "linux-gcc-x64"
+        },
+        {
+            // --- Windows 環境專用設定 ---
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**"
@@ -11,10 +26,12 @@
                 "_UNICODE"
             ],
             "windowsSdkVersion": "10.0.22621.0",
+            // 你本地 Windows 的 MinGW 編譯器路徑
             "compilerPath": "D:/mingw64/bin/g++.exe",
             "cStandard": "c17",
             "cppStandard": "c++17",
-            "intelliSenseMode": "gcc-x64"
+            // 針對 Windows 上使用 MinGW 的 IntelliSense 模式
+            "intelliSenseMode": "windows-gcc-x64"
         }
     ],
     "version": 4

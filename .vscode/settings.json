@@ -1,7 +1,20 @@
 {
     "code-runner.executorMap": {
-        "cpp": "sh D:/Desktop/codes/run_cpp.sh $fullFileName"
+        // --- 最終解決方案：不使用 cd，全程使用絕對路徑 ---
+        // 解釋:
+        // 1. g++ -std=c++17 \"$fullFileName\"
+        //    - 直接使用 g++ 編譯。"$fullFileName" 是檔案的完整絕對路徑，用引號包裹以處理空格。
+        //      例如: "/workspaces/codes/cses/Sorting and Searching/Restaurant Customers.cpp"
+        // 2. -o \"$dir/$fileNameWithoutExt\"
+        //    - 指定輸出檔。我們將完整的輸出路徑和檔名組合起來。
+        //      例如: "/workspaces/codes/cses/Sorting and Searching/Restaurant Customers"
+        //      這整個路徑同樣用引號包裹。
+        // 3. && \"$dir/$fileNameWithoutExt\"
+        //    - 如果編譯成功，就直接執行剛剛產生在完整路徑下的那個執行檔。
+        "cpp": "g++ -std=c++17 \"$fullFileName\" -o \"$dir/$fileNameWithoutExt\" && \"$dir/$fileNameWithoutExt\""
     },
+
+    // --- 其他設定保持不變 ---
     "code-runner.runInTerminal": true,
     "code-runner.saveFileBeforeRun": true,
     "files.associations": {
@@ -9,18 +22,16 @@
         "iosfwd": "cpp"
     },
     "editor.quickSuggestions": {
-    "other": true,
-    "comments": false,
-    "strings": false
+        "other": true,
+        "comments": false,
+        "strings": false
     },
     "editor.wordBasedSuggestions": "currentDocument",
     "editor.suggestOnTriggerCharacters": true,
     "editor.suggest.showWords": true,
-    "editor.suggest.minCharacters": 1, 
-    "editor.suggestSelection": "recentlyUsedByPrefix",    
+    "editor.suggest.minCharacters": 1,
+    "editor.suggestSelection": "recentlyUsedByPrefix",
     "editor.quickSuggestionsDelay": 0,
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "files.maxMemoryForLargeFilesMB": 4096
-
 }
-
