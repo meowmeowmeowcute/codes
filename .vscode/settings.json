@@ -35,4 +35,4 @@
 
     // 提升處理大型檔案時的記憶體限制
     "files.maxMemoryForLargeFilesMB": 4096
-}   
+} 
