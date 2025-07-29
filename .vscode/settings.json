@@ -8,7 +8,7 @@
     // 它會呼叫位於 .vscode 資料夾中的 run.sh 腳本，
     // 並將 VS Code 的內建變數 "$fullFileName" (檔案的完整絕對路徑) 作為參數傳遞給腳本。
     "code-runner.executorMap": {
-        "cpp": "bash run_cpp.sh \"$fullFileName\""
+        "cpp": "bash run_cpp.sh $fullFileName"
     },
 
     // --- 您提供的其他設定 ---
