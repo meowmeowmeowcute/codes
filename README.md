@@ -1,5 +1,3 @@
-# cses
+# codes
 
-there are cses codes 
-
-and be important, the template is useful
+there are my codes, my learning record

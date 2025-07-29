@@ -27,7 +27,7 @@ cd "$(dirname "$src_path")" || exit 1
 src_file="$(basename "$src_path")"
 
 # 設定一個唯一的暫存輸出檔名，避免同時執行多個檔案時互相覆蓋
-out_file="runner_temp_$(date +%s)_$$.out"
+out_file="runner.out"
 
 # 設定清理函數：當腳本無論是正常結束還是被中斷(Ctrl+C)時，都自動刪除暫存檔
 cleanup() {

@@ -1,26 +1,25 @@
 {
-    "code-runner.executorMap": {
-        // --- 最終解決方案：不使用 cd，全程使用絕對路徑 ---
-        // 解釋:
-        // 1. g++ -std=c++17 \"$fullFileName\"
-        //    - 直接使用 g++ 編譯。"$fullFileName" 是檔案的完整絕對路徑，用引號包裹以處理空格。
-        //      例如: "/workspaces/codes/cses/Sorting and Searching/Restaurant Customers.cpp"
-        // 2. -o \"$dir/$fileNameWithoutExt\"
-        //    - 指定輸出檔。我們將完整的輸出路徑和檔名組合起來。
-        //      例如: "/workspaces/codes/cses/Sorting and Searching/Restaurant Customers"
-        //      這整個路徑同樣用引號包裹。
-        // 3. && \"$dir/$fileNameWithoutExt\"
-        //    - 如果編譯成功，就直接執行剛剛產生在完整路徑下的那個執行檔。
-        "cpp": "g++ -std=c++17 \"$fullFileName\" -o \"$dir/$fileNameWithoutExt\" && \"$dir/$fileNameWithoutExt\""
-    },
-
-    // --- 其他設定保持不變 ---
+    // --- Code Runner 核心設定 ---
     "code-runner.runInTerminal": true,
     "code-runner.saveFileBeforeRun": true,
+    
+    // --- 自訂執行指令對應 ---
+    // 這是將 C++ 檔案的執行命令，指向我們自訂的 shell 腳本的關鍵設定。
+    // 它會呼叫位於 .vscode 資料夾中的 run.sh 腳本，
+    // 並將 VS Code 的內建變數 "$fullFileName" (檔案的完整絕對路徑) 作為參數傳遞給腳本。
+    "code-runner.executorMap": {
+        "cpp": "bash run_cpp.sh \"$fullFileName\""
+    },
+
+    // --- 您提供的其他設定 ---
+
+    // 檔案關聯：告訴 VS Code 將這些標頭檔識別為 C++ 的一部分
     "files.associations": {
         "iostream": "cpp",
         "iosfwd": "cpp"
     },
+
+    // 編輯器智慧提示與自動完成相關設定
     "editor.quickSuggestions": {
         "other": true,
         "comments": false,
@@ -33,5 +32,7 @@
     "editor.suggestSelection": "recentlyUsedByPrefix",
     "editor.quickSuggestionsDelay": 0,
     "editor.suggest.snippetsPreventQuickSuggestions": false,
+
+    // 提升處理大型檔案時的記憶體限制
     "files.maxMemoryForLargeFilesMB": 4096
 }
