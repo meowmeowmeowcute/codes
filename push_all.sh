@@ -23,12 +23,12 @@ commit_status=$? # 立刻儲存 commit 指令的結束狀態碼
 # 檢查 commit 的狀態碼
 if [ $commit_status -eq 0 ]; then
   # 狀態碼為 0，代表成功
-  echo "✅ Commit successful"
+  echo " Commit successful"
 else
   # 狀態碼非 0，代表有問題
   # 我們需要特別處理 "nothing to commit" 這種不算錯誤的狀況
   if echo "$commit_output" | grep -q "nothing to commit"; then
-    echo "ℹ️ Nothing to commit, working tree clean."
+    echo " Nothing to commit, working tree clean."
   else
     # 其他都是真正的錯誤，這時我們印出捕捉到的完整錯誤訊息
     echo "❌ Commit FAILED. Reason:"
@@ -49,7 +49,7 @@ push_status=$? # 立刻儲存 push 指令的結束狀態碼
 
 # 檢查 push 的狀態碼
 if [ $push_status -eq 0 ]; then
-  echo "✅ Push successful"
+  echo " Push successful"
 else
   # 任何非 0 狀態碼都代表 push 失敗，印出完整錯誤訊息
   echo "❌ Push FAILED. Reason:"
