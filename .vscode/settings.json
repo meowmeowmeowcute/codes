@@ -16,7 +16,8 @@
     // 檔案關聯：告訴 VS Code 將這些標頭檔識別為 C++ 的一部分
     "files.associations": {
         "iostream": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "chrono": "cpp"
     },
 
     // 編輯器智慧提示與自動完成相關設定

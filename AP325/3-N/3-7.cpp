@@ -1,9 +1,41 @@
 # include <bits/stdc++.h>
-# define int long long 
-# define MAX 200005
-using namespace std ;
+# define int long long
 
-# define pii pair<int, int> 
+# define MAX 200005
+# define inf 100000000000000000
+# define mod 1000000007
+
+# define pii pair<int, int>
+# define vi vector<int>
+# define vpii vector<pii>
+
+#define pb(...) push_back(__VA_ARGS__)
+#define bg(i) i.begin()
+#define ed(i) i.end()
+#define all(i) bg(i),ed(i)
+
+# define ff first
+# define ss second
+
+#define __overload_for__(i,j,k,l,m,...) m
+#define FN_(i) FNN(_, i)
+#define FNN(i,j) for(int i = 1;i<=j;i++)
+#define FNAT(i,j) for(auto i : j)
+#define FNNM(i,j,k) for(int i = j;i<=k;i++)
+#define FNNMQ(i, j, k, l) for (int i = j; i<=k; i=i+l)
+#define FN(...) __overload_for__(__VA_ARGS__,FNNMQ,FNNM,FNN, FN_)(__VA_ARGS__)
+
+#define nl cout<<"\n"
+#define out(i) cout<<(i)
+#define outs(i) cout<<(i)<<" "
+#define outl(i) cout<<(i)<<"\n"
+#define elif else if
+
+# define set_M() int M = (L+R)/2
+# define li 2*id
+# define ri 2*id+1
+
+using namespace std;
 
 template<typename T>
 inline int ab(int x) {
@@ -53,34 +85,22 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
     return fout;
 }
 
-
-
-int ans = 0;
-int n, inp;
-int a[MAX], b[MAX];
-vector <pii> graph;
-
-auto cmp(const std::pair<int, int>& element, long long value) {
-    return element.first > value;
-}
-
+map<int, int> graph;
+int n, k, maxi, inp;
+multiset<int> graph;
 signed main(){
-    cin >> n;
-    for (int i = 0; i<n; i++) cin>> a[i];
-    for (int i = 0; i<n; i++) cin>> b[i];
-    for (int i = 0; i<n; i++){
-        int curv  = a[i]+b[i];
-        while(!graph.empty() and a[i]>=(graph.back()).first){
-            graph.pop_back();
-        }
-            
-        auto it = lower_bound(graph.begin(), graph.end(), curv, cmp);
-        if(it != graph.begin()){
-            ans+=i-(it-1)->second-1;
-        }else{
-            ans+=i;
-        }
-        graph.push_back({a[i], i});
+    ios::sync_with_stdio(0);
+    cin.tie(0);cout.tie(0);
+
+    cin >> n >> k;
+    graph[0] = 1;
+    for (int i = 1; i<n; i++){
+       cin >> inp;
+       ;
     }
-    cout << ans;
+    for (int i = 0; i<n; i++){
+
+    }
 }
+
+
