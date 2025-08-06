@@ -17,7 +17,8 @@
     "files.associations": {
         "iostream": "cpp",
         "iosfwd": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "random": "cpp"
     },
 
     // 編輯器智慧提示與自動完成相關設定

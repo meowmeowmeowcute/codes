@@ -42,12 +42,12 @@ inline int ab(int x) {
     return x >= 0 ? x : -x;
 }
 template<typename T>
-inline T mi(T graph, T b) {
-    return graph < b ? graph : b;
+inline T mi(T a, T b) {
+    return a < b ? a : b;
 }
 template<typename T>
-inline T ma(T graph, T b) {
-    return graph > b ? graph : b;
+inline T ma(T a, T b) {
+    return a > b ? a : b;
 }
 
 //better io
@@ -85,39 +85,24 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
     return fout;
 }
 
-int n, k, b= 0, c= 0, inp;
-bool ans;
-vpii graph;
 
-bool cmp (const pii &a, const pii &b){
-    return a.first < b.first;
-}
+int n, inp, pre = 0, mx = -inf;
 
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
 
-    cin >> n >> k;
+    cin >> n;
     for (int i = 0; i<n; i++){
         cin >> inp;
-        graph.push_back({inp, i+1});
-    }
-    sort(graph.begin(), graph.end(), cmp);
-    int l = 0, r = n-1;
-    while(l<r and !ans){
-        if (graph[l].ff+graph[r].ff == k){
-            ans = 1;
-        }
-        else if (graph[l].ff+graph[r].ff < k){
-            l+=1;
-        }else{
-            r-=1;
+        mx = ma(mx, inp);
+        pre+=inp;
+        mx = ma(mx, pre);
+        if (pre <0){
+            pre = 0;
         }
     }
-    if (ans){
-        cout << graph[l].ss << ' ' << graph[r].ss;
-    }else{
-        cout << "IMPOSSIBLE";
-    }
+    cout << mx;
+    
 }   
 
