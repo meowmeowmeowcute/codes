@@ -86,29 +86,28 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
 }
 
 
-int n, cur =-1, ans = 0;
-
-int inp, b[MAX];
+int n, a[MAX], ans = 1;
 
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
 
     cin >> n;
-    for(int i = 0; i<n; i++){
-        cin >> inp;
-        b[inp] = i;
+    for (int i = 0; i<n; i++){
+        cin >>a[i];
     }
-    cur = b[1];
-    int l;
-    for (int i = 1; i<=n; i++){
-        int l = b[i];
-        if ( l < cur){
-            ans++;
+    int l = 0, r = 1;
+    while(l==r){
+        if(r == n-1){
+            cout << 1;
+            return 0;
         }
-        cur  = b[i];
+        l++;r++;
     }
-    cout << ans+1;
+    
+    while(r!=n-1){
+        r++;
 
+    }
 }   
 
