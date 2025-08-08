@@ -8,3 +8,5 @@ build/
 try/
 .cph/
 tempCodeRunnerFile.cpp
+.first
+.second
