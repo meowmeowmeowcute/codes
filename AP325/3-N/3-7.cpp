@@ -85,22 +85,35 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
     return fout;
 }
 
-map<int, int> graph;
-int n, k, maxi, inp;
-multiset<int> graph;
+int n, k, cur, maxi, times = 0, inp, graph[MAX];
+map<int, int> con;
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
 
     cin >> n >> k;
-    graph[0] = 1;
-    for (int i = 1; i<n; i++){
-       cin >> inp;
-       ;
-    }
     for (int i = 0; i<n; i++){
+       cin >> graph[i];
+    }
+    int l = 0, r = 0;
+    while(r<=n){
+        cur+=graph[r];
+        r++;
+        while(cur>k){
+            cur-=graph[l];
+            l++;
+        }
+        if (cur>maxi){
+            maxi = cur;
+            times = 1;
+        }
+        else if (cur == maxi){
+            times++;
+        }
+
 
     }
+    cout << maxi << "\n" << times;
 }
 
 

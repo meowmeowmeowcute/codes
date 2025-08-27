@@ -18,7 +18,9 @@
         "iostream": "cpp",
         "iosfwd": "cpp",
         "chrono": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "text_encoding": "cpp",
+        "thread": "cpp"
     },
 
     // 編輯器智慧提示與自動完成相關設定
