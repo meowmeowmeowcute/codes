@@ -1,0 +1,2 @@
+#include<bits/stdc++.h>
+using namespace std;int n,m,i,h,t,q[1000005],v[1002001],p[1002001],w[4];char s[1002001],c[1002001];int main(){cin>>n>>m;for(i=1;i<=n*m;i++){cin>>s[i];if(s[i]=='A')q[t++]=i,v[i]=1;}w[1]=1,w[2]=m,w[3]=-1,w[0]=-m;while(h<t){int u=q[h++],k=0;for(;k<4;k++){int g=u+w[k];if(g>0&&s[g]>35&&!v[g]){v[g]=1;p[g]=u;c[g]="URDL"[k];q[t++]=g;if(s[g]=='B'){string o;for(;s[g]!='A';g=p[g])o+=c[g];reverse(o.begin(),o.end());printf("YES\n%d\n%s",o.size(),o.c_str());return 0;}}}}puts("NO");}
