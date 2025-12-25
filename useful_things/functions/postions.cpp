@@ -1,4 +1,4 @@
-# include <stdc++.h>
+# include <bits/stdc++.h>
 using namespace std;
 
 bool in_area(int y, int x, int lis_y, int lis_x){
