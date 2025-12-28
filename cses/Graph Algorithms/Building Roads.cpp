@@ -1,14 +1,14 @@
 # include<bits/stdc++.h>
 using namespace std;
-
+ 
 # define pb push_back
-
+ 
 int n, m, a, b; 
 vector<int> graph[100005];
 int visited[100005];
 int boss_of_area[100005];
 int cur_idx = 0;
-
+ 
 void bfs (int start){
     cur_idx++;
     queue<int> q;
@@ -26,9 +26,9 @@ void bfs (int start){
         }
     }
     boss_of_area[cur_idx] = start;
-
+ 
 }
-
+ 
 int main (){
     cin >> n >> m;         
     for (int i = 0 ; i<m; i++){
@@ -46,4 +46,3 @@ int main (){
     for (int i = 1; i<cur_idx; i++){
         cout << boss_of_area[i] << ' ' << boss_of_area[i+1] << '\n';
     }
-}
