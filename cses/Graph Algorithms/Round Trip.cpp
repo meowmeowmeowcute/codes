@@ -87,6 +87,9 @@ std::ostream& operator<<(std::ostream& fout,std::pair<T,R>&x) {
 
 int n, m, a, b;
 int father[(int)1e5+10];
+int distance[(int)1e5+10];
+bool visited[(int)1e5+10];
+vi graph[(int)1e5+10];
 
 signed main(){
     ios::sync_with_stdio(0);
@@ -94,10 +97,17 @@ signed main(){
 
     cin >> n >> m;
     for (int i = 0; i<m; i++){
-        
+        cin >> a >> b;
+        graph[a].pb(b);
+        graph[b].pb(a);
     }
-    
 
+    queue<int> q.push(1);
+    visited[1] = 1;
+    while(!q.empty()){
+
+    }
+//dfs
 }   
 
 
