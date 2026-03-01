@@ -46,3 +46,4 @@ int main (){
     for (int i = 1; i<cur_idx; i++){
         cout << boss_of_area[i] << ' ' << boss_of_area[i+1] << '\n';
     }
+}
