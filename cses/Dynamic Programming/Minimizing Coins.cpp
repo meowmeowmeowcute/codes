@@ -49,9 +49,13 @@ signed main(){
     int n, x;
     cin >> n >> x;
     int value[n];
+    int dp[x];
+    memset(dp, 0x3f, sizeof(dp));
     for (int i = 0; i<n; i++){
         cin >> value[i];
     }
+
+    for
 
 }   
 
