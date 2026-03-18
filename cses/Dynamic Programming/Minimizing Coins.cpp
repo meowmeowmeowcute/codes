@@ -55,7 +55,7 @@ signed main(){
         cin >> value[i];
     }
 
-    for
+    fordwa
 
 }   
 
