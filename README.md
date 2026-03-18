@@ -1,3 +1,3 @@
-# codes
+# storages
 
 there are my codes, my learning record
