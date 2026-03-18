@@ -1,6 +1,6 @@
 {
     // --- Code Runner 核心設定 ---
-    "code-runner.runInTerminal": true,
+    "code-runner.runInTerminal": true, 
     "code-runner.saveFileBeforeRun": true,
     
     // --- 自訂執行指令對應 ---
