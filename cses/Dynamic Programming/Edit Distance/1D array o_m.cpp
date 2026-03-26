@@ -42,13 +42,39 @@ inline T ma(T a, T b) {
     return a > b ? a : b;
 }
 
+int dp[5005];
+
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);    
     
-    int n,m;
-    cin >> n >> m;
+    string a, b;
+    cin >> a >> b;
+    int n = a.size();
+    int m = b.size();
+
+    for(int i = 0; i<=m; i++){
+        dp[i] = i;
+    }
+
+    for (int i = 1; i<=n; i++){
+        int pre = dp[0];
+        dp[0] = i;
+        for (int j = 1; j<=m; j++){
+            int temp = dp[j];
+            if (a[i-1] == b[j-1]){
+                dp[j] = pre;
+            }else{
+                dp[j] = 1+mi(mi(pre, dp[j-1]), dp[j]);
+            }
+            pre = temp;
+        }
+    }
+    cout << dp[m];
     
+    
+
+
 
 }   
 
