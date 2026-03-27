@@ -43,10 +43,25 @@ inline T ma(T a, T b) {
     return a > b ? a : b;
 }
 
+bitset<100005> dp;
+
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);    
 
+    dp[0] = 1;
+    int n, coin;
+    cin >> n;
+    for (int i = 0; i<n; i++){
+        cin >> coin;
+        dp |= (dp<<coin);
+    }
+    cout << dp.count()-1<< "\n";
+    for (int i = 1; i<=100000; i++){
+        if (dp[i]){
+            cout << i << ' ';
+        }
+    }
 }   
 
 
