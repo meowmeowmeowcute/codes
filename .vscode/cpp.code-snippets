@@ -6,7 +6,8 @@
             "//# define int long long",
             "",
             "# define MAX 200005",
-            "# define inf 1000000000",
+            "const int INF = 0x3f3f3f3f;",
+            "const long long LINF = 0x3f3f3f3f3f3f3f3f;",
             "# define mod 1000000007",
             "",
             "# define pii pair<int, int>",
@@ -56,6 +57,6 @@
             "",
             ""
         ],
-        "description": "Auto-generated from base_template.cpp"
+        "description": "Auto-generated from base_template.cpp with 0x3f INF optimization"
     }
 }
