@@ -57,15 +57,14 @@ signed main(){
     }
 
     string ans = "";
-    ans+=graph[0][0];
     dp[0][0] = 1;
 
-    for (int step = 0; step<2*n-2; step++){
+    for (int step = 0; step<2*n-1; step++){
         char mini = 'Z' + 1;
         for (int i = 0; i<=step; i++){
             int j = step-i;
-            if (i<n && j <n && dp[i][j]){
-                mini = min(mini, (char)dp[i][j]);;;;
+            if (i<n && j<n && dp[i][j]){
+                mini = min(mini, (char)graph[i][j]);
             }
         }
 
@@ -73,8 +72,18 @@ signed main(){
     
         for(int i = 0; i<=step; i++){
             int j = step-i;
+            if (i<n && j<n && dp[i][j] && graph[i][j] == mini){
+                if (i+1<n){
+                    dp[i+1][j] = 1;
+                }
+                if (j+1<n){
+                    dp[i][j+1] = 1;
+                }
+            }
         }
     }
+
+    cout << ans;
 }   
 
 
