@@ -65,7 +65,7 @@ signed main(){
         for (int i = 0; i<=step; i++){
             int j = step-i;
             if (i<n && j <n && dp[i][j]){
-                mini = min(mini, (char)dp[i][j]);
+                mini = min(mini, (char)dp[i][j]);;;;
             }
         }
 
