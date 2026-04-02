@@ -1,5 +1,5 @@
 # include <bits/stdc++.h>
-//# define int long long
+# define int long long
 
 # define MAX 200005
 const int INF = 0x3f3f3f3f;
@@ -43,9 +43,41 @@ inline T ma(T a, T b) {
     return a > b ? a : b;
 }
 
+
+
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);    
+
+    int n, m;
+    cin >> n >> m;
+    vi graph(n+5);
+    for (int i = 0; i<n; i++){
+        cin >> graph[i];
+    }
+
+    vpii dp((1<<n), {n+1, 0});
+    dp[0] = {1, 0};
+
+    for (int mask = 0; mask<(1<<n); mask++){
+        for (int i = 0; i<n; i++){
+            if(!(mask&(1<<i))){
+                int next_mask = mask | (1<<i);
+                pii cur;
+                if(dp[mask].ss+graph[i]<=m){
+                    cur = {dp[mask].ff , dp[mask].ss+graph[i]};
+                }else{
+                    cur = {dp[mask].ff+1 , graph[i]};
+                }
+
+                if (cur<dp[next_mask]){
+                    dp[next_mask] = cur;
+                }
+            }
+        }
+    }
+
+    cout << dp[(1<<n)-1].ff;
 
 }   
 
