@@ -43,9 +43,21 @@ inline T ma(T a, T b) {
     return a > b ? a : b;
 }
 
+int dp[1005][1024+5];
+
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);    
+
+    int n, m;
+    cin>> n >> m;
+    dp[0][0] = 1;
+
+    for (int i = 0; i<m; i++){
+        for (int mask = 0; mask<=(1<<n)-1; mask++){
+            dp[i][]
+        }
+    }
 
 }   
 
