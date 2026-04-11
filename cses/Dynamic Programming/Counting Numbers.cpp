@@ -1,5 +1,5 @@
 # include <bits/stdc++.h>
-//# define int long long
+# define int long long
 
 # define MAX 200005
 const int INF = 0x3f3f3f3f;
@@ -43,26 +43,49 @@ inline T ma(T a, T b) {
     return a > b ? a : b;
 }
 
-string a, b;
-int dp[20][10][2];
-void dfs(int id, int last_dight, bool is_limit, bool is_leadzero){
-    int limit = a[id];
-    if(is_limit){
-        for (int i = 0; i<=limit; i++){
-            bool nxt_limit = 0;
-            bool nxt_zero = 0;
-            if (is_limit && i == limit)nxt_limit = 1;
-            if (is_leadzero && i == 0)nxt_zero = 1;
-            if (i != last_dight){
-                dfs(id+1, i, nxt_limit, nxt_zero);
-            } 
-        }
-    }
+int a, b;
+string goal;
+int dp[20][10];
+
+int dfs(int id, int last_dight, bool is_limit, bool is_leadzero){
+    
+    if(id == goal.size()) return 1;  
+
+    int ans = 0;
+    int limit = is_limit ? goal[id]-'0' : 9;    
+    
+    
+    if(!is_limit && !is_leadzero && dp[id][last_dight]!=-1)
+        return dp[id][last_dight];   
+
+    for (int i = 0; i<=limit; i++)
+        if (i != last_dight || is_leadzero){
+            bool nxt_limit = (is_limit && i == limit);
+            bool nxt_zero = (is_leadzero && i == 0);        
+            ans+=dfs(id+1, i, nxt_limit, nxt_zero);
+        }         
+
+    if(!is_limit && !is_leadzero) dp[id][last_dight] = ans;
+
+    return ans;
 }
+
+int slove(int n){
+    if (n<0) return 0;
+    goal = to_string(n);
+    memset(dp, -1, sizeof(dp));
+    return dfs(0, -1, 1, 1);
+}
+
 
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);    
+
+
+    cin >> a >> b;
+    cout << slove(b)-slove(a-1);
+
 
 }   
 
