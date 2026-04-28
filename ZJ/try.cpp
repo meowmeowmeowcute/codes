@@ -1,7 +1,15 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
 using namespace std;
-int main(){
-  int k = 5, l;
-  l = k/2;
-  cout << l;
+
+int main() {
+    vector<int> v = {10, 20, 30, 40, 50};
+    auto it = lower_bound(v.begin(), v.end(), 30);
+    
+    cout << it-v.begin();
+    cout << "         " << *it; 
+
+    return 0;
 }
