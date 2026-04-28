@@ -5,6 +5,7 @@
 *.bin
 *.js
 *.txt
+!prompt.txt
 build/
 try/
 .cph/
