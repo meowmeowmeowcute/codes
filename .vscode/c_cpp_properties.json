@@ -9,7 +9,7 @@
             "defines": [],
             // Linux 環境下 g++ 編譯器的標準路徑
             "compilerPath": "/usr/bin/g++",
-            "cStandard": "c17",
+            "cStandard": "c17", 
             "cppStandard": "c++17",
             // 針對 Linux 的 IntelliSense 模式
             "intelliSenseMode": "linux-gcc-x64"

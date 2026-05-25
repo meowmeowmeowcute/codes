@@ -7,6 +7,7 @@
 *.txt
 !prompt.txt
 build/
+/try
 try/
 .cph/
 tempCodeRunnerFile.cpp
