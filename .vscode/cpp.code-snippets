@@ -61,7 +61,7 @@
             "    ios::sync_with_stdio(0);",
             "    cin.tie(0);cout.tie(0);    ",
       "    $0",
-      "}   "
+      "};   "
     ],
     "description": "Enhanced CP template with PBDS support and 0x3f INF"
 }
