@@ -52,9 +52,24 @@ template<typename T>
 inline T ma(T a, T b) {
     return a > b ? a : b;
 }
-
+int graph[1000][1000];
 signed main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);cout.tie(0);    
-    
+    // ios::sync_with_stdio(0);
+    // cin.tie(0);cout.tie(0);    
+    int a, b;
+    cout << 150*114;
+    while(cin>> a >> b){
+        for(int i = 0; i<a; i++){
+            for (int j = 0; j<b; j++){
+                cin >> graph[i][j];
+            }
+        }
+        for(int i = 0; i<b; i++){
+            for (int j = 0; j<a; j++){
+                cout << graph[j][i]<< ' ';
+            }
+            cout << "\n";
+        }
+    }
+
 };
