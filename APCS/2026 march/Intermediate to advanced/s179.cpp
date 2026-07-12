@@ -14,7 +14,7 @@ using namespace std;
 //     tree_order_statistics_node_update // Enables order statistics support
 // > indexed_set;
 
-# define MAX 200005
+# define MAX 100005
 const int INF = 0x3f3f3f3f;
 const long long LINF = 0x3f3f3f3f3f3f3f3f;
 # define mod 1000000007
@@ -53,8 +53,49 @@ inline T ma(T a, T b) {
     return a > b ? a : b;
 }
 
+int n, m;
+int graph[MAX];
+int pre[MAX];
+int cl, cr, a, b;
+
+int RS(int l, int r){ // range_sum
+    return pre[r] - pre[l-1];
+}
+
+bool check(double slk, double slr, double mid){
+    if ((double)slk/slr>=(double)mid/1){
+        return true;
+    }
+    return false;
+}
+
 signed main(){
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);    
 
+    cin >> n >> m;
+    pre[0] = 0;
+    for (int i = 1; i<=n; i++){
+        cin >> graph[i];
+        pre[i] = graph[i]+pre[i-1];
+    }
+
+    for (int i = 0; i<m; i++){
+        cin >> cl >> cr >> a >> b;
+        double cmid = (double)a/(a+b);
+        double slr = RS(cl, cr);
+
+        int l = cl;
+        int r = cr;
+        while(l<r){
+            int mid = (l+r)/2;
+            if (check(RS(cl, mid), slr, cmid)){
+                r = mid;
+            }else{
+                l = mid+1;
+            }
+        }
+        cout << l << '\n';
+
+    }   
 };   
