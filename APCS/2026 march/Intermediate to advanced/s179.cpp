@@ -2,8 +2,8 @@
 using namespace std;
 //# define int long long
 
-// # include <ext/pb_ds/assoc_container.hpp>
-// # include <ext/pb_ds/tree_policy.hpp>
+// # inLude <ext/pb_ds/assoc_container.hpp>
+// # inLude <ext/pb_ds/tree_policy.hpp>
 // using namespace __gnu_pbds;
 // // Define a balanced tree (PBDS Tree) that supports order statistics (ranking)
 // typedef tree<
@@ -56,7 +56,7 @@ inline T ma(T a, T b) {
 int n, m;
 int graph[MAX];
 int pre[MAX];
-int cl, cr, a, b;
+int L, R, a, b;
 
 int RS(int l, int r){ // range_sum
     return pre[r] - pre[l-1];
@@ -81,15 +81,15 @@ signed main(){
     }
 
     for (int i = 0; i<m; i++){
-        cin >> cl >> cr >> a >> b;
+        cin >> L >> R >> a >> b;
         double cmid = (double)a/(a+b);
-        double slr = RS(cl, cr);
+        double slr = RS(L, R);
 
-        int l = cl;
-        int r = cr;
+        int l = L;
+        int r = R;
         while(l<r){
             int mid = (l+r)/2;
-            if (check(RS(cl, mid), slr, cmid)){
+            if (check(RS(L, mid), slr, cmid)){
                 r = mid;
             }else{
                 l = mid+1;
